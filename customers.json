@@ -4,52 +4,57 @@
         6249349231
     ],
     "succed_proccesses": [],
-    "all_users_rate": [], 
+    "all_users_rate": [
+        {
+            "c_id": 6852863205,
+            "username": "@AbdElhadyDev",
+            "rate": 8.0
+        }
+    ],
     "all_users_comments_rate": [],
-
-
-"defult data putting":{
-    "all_chat_id" : ["user1 id", "user2 id", "etc"],
-
-    "succed_proccesses" : [
-        {
-            "c_id" : "<customer1 id> type = int",
-            "username" : "<customer1 username> type = str",
-            "total price" : "<customer1 total price> type = float",
-            "all products ids" : "<customer1 all products ids> type = list of int"
-        },
-        {
-            "c_id" : "<customer2 id> type = int",
-            "username" : "<customer2 username> type = str",
-            "total price" : "<customer2 total price> type = float",
-            "all products ids" : "<customer2 all products ids> type = list of int"
-        }
-    ],
-
-    "all_users_rate" : [
-        {
-            "c_id" : "<user1 id> type = int",
-            "username" : "<user1 username> type = str",
-            "rate" : "<user1 rate> type = float"
-        },
-        {
-            "c_id" : "<user2 id> type = int",
-            "username" : "<user2 username> type = str",
-            "rate" : "<user2 rate> type = float"
-        }
-    ],
-
-    "all_users_comments_rate" : [
-        {
-            "c_id" : "<user1 id> type = int",
-            "username" :"<user1 username> type = str",
-            "comment" : "<user1 comment> type = str"
-        },
-        {
-            "c_id" : "<user1 id> type = int",
-            "username" :"<user1 username> type = str",
-            "comment" : "<user1 comment> type = str"
-        }
-    ]
+    "defult data putting": {
+        "all_chat_id": [
+            "user1 id",
+            "user2 id",
+            "etc"
+        ],
+        "succed_proccesses": [
+            {
+                "c_id": "<customer1 id> type = int",
+                "username": "<customer1 username> type = str",
+                "total price": "<customer1 total price> type = float",
+                "all products ids": "<customer1 all products ids> type = list of int"
+            },
+            {
+                "c_id": "<customer2 id> type = int",
+                "username": "<customer2 username> type = str",
+                "total price": "<customer2 total price> type = float",
+                "all products ids": "<customer2 all products ids> type = list of int"
+            }
+        ],
+        "all_users_rate": [
+            {
+                "c_id": "<user1 id> type = int",
+                "username": "<user1 username> type = str",
+                "rate": "<user1 rate> type = float"
+            },
+            {
+                "c_id": "<user2 id> type = int",
+                "username": "<user2 username> type = str",
+                "rate": "<user2 rate> type = float"
+            }
+        ],
+        "all_users_comments_rate": [
+            {
+                "c_id": "<user1 id> type = int",
+                "username": "<user1 username> type = str",
+                "comment": "<user1 comment> type = str"
+            },
+            {
+                "c_id": "<user1 id> type = int",
+                "username": "<user1 username> type = str",
+                "comment": "<user1 comment> type = str"
+            }
+        ]
     }
 }

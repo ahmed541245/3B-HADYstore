@@ -6,11 +6,6 @@ def get_json_data (path):
     with open (path + ".json", "r") as file:
         return json.load (file)
 
-#? updating data func in json
-def updata_data (path, data):
-    with open (path + ".json", "w") as file:
-        json.dump (data, file, indent= 4)
-    
 
 def data_selector (obj):
     if type (obj) == str:
@@ -18,6 +13,11 @@ def data_selector (obj):
     elif type (obj) == dict :
         return obj
     assert type (obj) in [str, dict], "The type is invaled, you should put a json data or json file path"
+    
+#? updating data func in json
+def updata_data (path, data):
+    with open (path + ".json", "w") as file:
+        json.dump (data, file, indent= 4)
     
 
 #? checking obj foundation func in json
@@ -43,8 +43,7 @@ def get_obj (path, listname, varname, value):
     for obj in lst :
         if obj [varname] == value:
             return obj
-        else : found = False
-    return found
+    return False
 
 
 #? json files management decorator
@@ -102,7 +101,7 @@ def update_value (path, listname, var_sellector_name, sellector_value, var_name,
     new_obj = obj.copy () 
     new_obj [var_name] = value
     lst.remove (obj)
-    list.append (new_obj)
+    lst.append (new_obj)
     return data
     
 #? updating all objects's value func in json
