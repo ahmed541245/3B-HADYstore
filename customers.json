@@ -1,4 +1,9 @@
 {
-    "all_chat_id" : [],
-    "selling_processes": []
+    "all_chat_id": [
+        6852863205,
+        6249349231
+    ],
+    "succed_proccesses": [],
+    "all_users_rate": [],
+    "all_users_comments_rate": []
 }

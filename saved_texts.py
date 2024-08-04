@@ -1,3 +1,4 @@
+admin_ids = [6852863205]
 bot_name = "تيلو"
 store_name = "3B HADY Store"
 first_start_message = lambda name : f"مرحبا {name} انا {bot_name} تاجرك لمتجر {store_name}"
@@ -31,21 +32,21 @@ about_bot = lambda chats_num, succeed_process_number, users_rate, users_comments
 programmer_text = """
 about progarmmer
 ====================
---- Information ---
-♜ Name : Ahmed Abd Elhady
-♜ NickName1 : 3B HADY
-♜ NickName2 : El7adry
-♜ Age : 16 -> 17
+--- 𝕀𝕟𝕗𝕠𝕣𝕞𝕒𝕥𝕚𝕠𝕟 ---
+♜ ɴᴀᴍᴇ : Ahmed Abd Elhady
+♜ ɴɪᴄᴋɴᴀᴍᴇ1 : 3B HADY
+♜ ɴɪᴄᴋɴᴀᴍᴇ2 : El7adry
+♜ ᴀɢᴇ : 16 -> 17
 
 ====================
---- Edu and CS ---
+--- 𝔼𝕕𝕦 𝕒𝕟𝕕 ℂ𝕊 ---
 ♜ Edu stage : 11th class
     ( 2nd secondary school )
 
-♜ CS details :
+♜ CS ᴅᴇᴛᴀɪʟꜱ :
   - programming languages :
-    * python (very good)
-    * JavaScript (under middle)
+    * 𝚙𝚢𝚝𝚑𝚘𝚗 (very good)
+    * 𝙹𝚊𝚟𝚊𝚂𝚌𝚛𝚒𝚙𝚝 (under middle)
   - problem solving : 
     * level 6 in codewars.com
     * good in normal problems
@@ -53,7 +54,7 @@ about progarmmer
     * middle level
 
 ====================
---- Media ---
+--- 𝕄𝕖𝕕𝕚𝕒 ---
 ♜ contact : 01096940855
 ♜ email : alhdry420@gmail.com
 ♜ another media links :

@@ -9,7 +9,7 @@ def get_json_data (path):
 #? updating data func in json
 def updata_data (path, data):
     with open (path + ".json", "w") as file:
-        json.dump (data, path, indent= 4)
+        json.dump (data, file, indent= 4)
     
 
 def data_selector (obj):
@@ -59,8 +59,10 @@ def manage_files (func):
 @manage_files
 def add_obj2list (path, listname, obj):
     data = path
+    data : dict
     lst = list (data [listname])
     lst.append (obj)
+    data [listname] = lst
     return data
 
 #? removing value from a list func in json
