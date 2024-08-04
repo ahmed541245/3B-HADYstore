@@ -1,4 +1,5 @@
 admin_ids = [6852863205]
+myusername = "@AbdElhadyDev"
 bot_name = "تيلو"
 store_name = "3B HADY Store"
 first_start_message = lambda name : f"مرحبا {name} انا {bot_name} تاجرك لمتجر {store_name}"

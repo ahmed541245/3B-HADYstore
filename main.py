@@ -2,7 +2,8 @@ import telebot
 import matplotlib
 from saved_texts import *
 from manageJsonFiles import *
-from telebot.types import Message, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
+from telebot.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
+from telebot.types import CallbackQuery, KeyboardButton
 
 token = "7260622545:AAFy-2O067SNaEl7W4PtMPbmfSfXHyqKCSc"
 bot = telebot.TeleBot (token)
@@ -63,12 +64,65 @@ def dev (m : Message):
 @bot.message_handler (commands= ["about"])
 def about (m: Message):
     data = get_json_data ("customers")
+
     lst = data ["all_users_rate"]
-    rating = sum (lst) / len (lst) if len (lst) > 0 else "لا تقييم للبوت الى الآن"
+
+    rating_list = [rate_data ["rate"] for rate_data in lst]
+
+    rating = sum (rating_list) / len (lst) if len (lst) > 0 else "لا تقييم للبوت الى الآن"
+
     rating_comments_txt = ""
-    for comment in data ["all_users_comments_rate"]:
-        rating_comments_txt += f"♜ {comment} \n"
+
+    for comment_data in data ["all_users_comments_rate"]:
+
+        username = comment_data ["username"]
+
+        comment = comment_data ["comment"]
+
+        rating_comments_txt += f"♜ {username} : {comment} \n"
+
     message = about_bot (len (data ["all_chat_id"]), len (data ["succed_proccesses"]), rating, rating_comments_txt)
+
     bot.send_photo (m.chat.id, open ("bot.jpg", "rb"),caption= message)
+
+#! get rate from user
+@bot.message_handler (commands= ["rateme"])
+def rateme (m : Message):
+
+    data = get_json_data ("customers.json")
+
+    rate_data = get_obj (data, "all_users_rate", "c_id", m.chat.id)
+    
+    if rate_data :
+        rate = rate_data ["rate"]
+        bot.send_message (bot.send_message (m.chat.id, f"لقد قمت بتقييم المتجر بالفعل  {rate} الآن ستقوم بتغيره :"))
+
+    reply = bot.send_message (m.chat.id, "قم بارسال تقيمك للمتجر من 0 الى 10  : ")
+    bot.register_next_step_handler (reply, the_rating)
+    
+    def the_rating (m2: Message):
+        txt = m2.text
+        therate = float (txt)
+        chat_id = m2.chat.id
+        if not str (txt).isnumeric () :
+            return bot.send_message (chat_id, "يجب ان يكون التقييم ارقام فقط : ")
+        if not (therate <= 10 and therate >= 0) :
+            return bot.send_message (chat_id, "يجب ان يكون التقيم ما بين 0 و 10")
+
+        if rate_data :
+            update_value (data, "all_users_rate", "c_id", m.chat.id, "rate", therate)
+        else :
+            rate_data = {
+            "c_id" : m.chat.id,
+            "username" : f"@{m.from_user.username}",
+            "rate" : therate }
+            add_obj2list (data, "all_users_rate", rate_data)
+        bot.send_message (m.chat.id, "شكرا على تزويدنا بتقييمك")
+        if therate <= 2.5:
+            bot.send_message (m.chat.id, f"نرجو تزويدنا بالسبب الذي جعلك تضع هذا التقييم السيئ {myusername}")
+
+
+
+
 #! sotre main menu buttons
 bot.infinity_polling ()

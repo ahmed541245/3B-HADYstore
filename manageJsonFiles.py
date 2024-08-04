@@ -50,7 +50,7 @@ def get_obj (path, listname, varname, value):
 #? json files management decorator
 def manage_files (func):
     def wrapper (path, *args, **kwargs) :
-        data = get_json_data (path)
+        data = data_selector (path)
         final_data = func (data, *args, **kwargs)
         updata_data (path, final_data)
     return wrapper
