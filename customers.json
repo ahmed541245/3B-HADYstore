@@ -1,17 +1,30 @@
 {
     "all_chat_id": [
         6852863205,
-        6249349231
+        6249349231,
+        5815532813
     ],
     "succed_proccesses": [],
     "all_users_rate": [
         {
+            "c_id": 5815532813,
+            "username": "@MohammedAbdElhady0",
+            "rate": 10.0
+        },
+        {
+            "c_id": 6249349231,
+            "username": "@AbdElhady121",
+            "rate": 10.0
+        },
+        {
             "c_id": 6852863205,
             "username": "@AbdElhadyDev",
-            "rate": 8.0
+            "rate": 10.0
         }
     ],
     "all_users_comments_rate": [],
+    "agreement_comments" : [],
+    "banned_users" : [],
     "defult data putting": {
         "all_chat_id": [
             "user1 id",
@@ -47,13 +60,23 @@
         "all_users_comments_rate": [
             {
                 "c_id": "<user1 id> type = int",
+                "comment_id": "<user1 comment id> type = int",
                 "username": "<user1 username> type = str",
                 "comment": "<user1 comment> type = str"
             },
             {
-                "c_id": "<user1 id> type = int",
-                "username": "<user1 username> type = str",
-                "comment": "<user1 comment> type = str"
+                "c_id": "<user2 id> type = int",
+                "comment_id": "<user2 comment id> type = int",
+                "username": "<user2 username> type = str",
+                "comment": "<user2 comment> type = str"
+            }
+        ],
+        "agreement_comments" : "<the same of 'all_users_comments_rate' list>",
+        "banned_users" : [
+            {
+                "username" : "<user1 username> type = str",
+                "c_id" : "<user1 id> type = int",
+                "duration" : "<user1 ban duration (by seconds)> type = int"
             }
         ]
     }

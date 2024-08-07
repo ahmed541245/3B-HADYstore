@@ -4,6 +4,7 @@ from saved_texts import *
 from manageJsonFiles import *
 from telebot.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 from telebot.types import CallbackQuery, KeyboardButton
+import random
 
 token = "7260622545:AAFy-2O067SNaEl7W4PtMPbmfSfXHyqKCSc"
 bot = telebot.TeleBot (token)
@@ -85,7 +86,7 @@ def about (m: Message):
 
     bot.send_photo (m.chat.id, open ("bot.jpg", "rb"),caption= message)
 
-#! get rate from user
+#? get rate from user
 @bot.message_handler (commands= ["rateme"])
 def rateme (m : Message):
 
@@ -123,6 +124,52 @@ def rateme (m : Message):
 
     bot.register_next_step_handler (reply, the_rating)
 
+#! get comment from user
+@bot.message_handler (commands= ["ratecomment"])
+def reatecomment (m: Message):
+    data = get_json_data ("customers")
+    chat_id = m.chat.id
+    comment_data = get_obj (data, "all_users_comments_rate", "c_id", chat_id)
+    username = m.from_user.username
+    if comment_data :
+        comm = comment_data ["comment"]
+        bot.send_message (chat_id, 
+            f"لقد قيمت المتجر من قبل و هذا كان تقييمك \n{comm}\n سوف يتم تفييره بالتقييم الذي ستقدمه لنا الآن")
+    request_message = bot.reply_to (m, "ارسل لنا التقييم الآن : ")
+    
+    def get_comment (m2 : Message):
+        admin_id = admin_ids [0]
+        txt = m.text
+        agreement_markup = InlineKeyboardMarkup (row_width= 8)
+        agree_button = InlineKeyboardButton ("Agree", callback_data= f"AgreeToComment {comment_data ["comment_id"]}")
+        disagree_button = InlineKeyboardButton ("Agree", callback_data= f"DisgreeToComment {comment_data ["comment_id"]}")
+        comment_id = 10000 + random.randint (0, 4445)
+        comment_dict = {
+                "c_id": chat_id,
+                "comment_id": comment_id,
+                "username": f"@{username}",
+                "comment": txt
+            }
+        for button in [agree_button, disagree_button]: agreement_markup.add (button)
+        add_obj2list (data, "agreement_comments", comment_dict)
+        bot.send_message (admin_id, f"the user : {username} commnted on the sotre : \n {txt} are you agree",
+                          reply_markup= agreement_markup)
+        bot.reply_to (m2, 
+       "تم ارسال تعليقك الى الادمن للموافقه عليه ، سيتم الموافقه على التقييم في حال انه ليس تافه او لا يوجد به تعدي")
+    bot.register_next_step_handler (request_message, get_comment)
+
+def AgreeToComment (comment_id):
+    comment_obj = get_obj ("customers", "agreement_comments", "comment_id", comment_id)
+    remove_obj_from_list ("customers", "agreement_comments", comment_obj)
+    add_obj2list ("customers", "all_users_comments_rate", comment_obj)
+    bot.send_message (comment_obj ["c_id"], "التقييم بتاعك اتقبل من الادمن")
+
+def DisgreeToComment (comment_id):
+    pass
+
+@bot.callback_query_handler (func= lambda call : True)
+def call (call : CallbackQuery):
+    pass
 
 #! sotre main menu buttons
 bot.infinity_polling ()
