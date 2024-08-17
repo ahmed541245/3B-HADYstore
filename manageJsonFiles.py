@@ -5,9 +5,17 @@ def get_json_data (path):
     with open (path, "r") as file:
         return json.load (file)
 
+def data_selector (obj):
+    if type (obj) == str:
+        return get_json_data (obj)
+    elif type (obj) == dict :
+        return obj
+    assert type (obj) in [str, dict], "The type is invaled, you should put a json data or json file path"
+    
+
 #? checking obj foundation func in json
 def check_obj (path, listname, attr_name, value):
-    data = get_json_data (path) if type (path) == str else path
+    data = data_selector (path)
     lst = data [listname]
     for obj in lst :
         if obj [attr_name] == value:
@@ -15,8 +23,12 @@ def check_obj (path, listname, attr_name, value):
         else : found = False
     return found
 
-
 #! checking value foundation func in json
+def check_value (path, listname, value):
+    data = data_selector (path)
+    lst = data [listname]
+    return value in lst
+
 #! json files management decorator
 #! adding vlaue to a list func in json
 #! adding obj to the list func in json
