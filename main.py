@@ -1,5 +1,4 @@
 import telebot
-import json
 import matplotlib
 
 def converting_time (value, timefrom, timeto):
@@ -23,5 +22,4 @@ def converting_time (value, timefrom, timeto):
     result = value
     for time in lst :
         result = result / times [time]
-    return result
-    
+    return result 
