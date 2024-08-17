@@ -5,7 +5,15 @@ def get_json_data (path):
     with open (path, "r") as file:
         return json.load (file)
 
-#! checking obj foundation func in json
+#? checking obj foundation func in json
+def check_obj (path, listname, attr_name, value):
+    data = get_json_data (path) if type (path) == str else path
+    lst = data [listname]
+    for obj in lst :
+        if obj [attr_name] == value:
+            return True
+        else : found = False
+    return found
 
 
 #! checking value foundation func in json
